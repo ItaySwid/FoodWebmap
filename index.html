@@ -173,6 +173,7 @@ function mergeQueriesWithAnd(q1, q2) {
 //
 // Logical functions for time range
 function rangesIntersect(stRange, st, ed) {
+    if rngs==null) return false;
     rngs = stRange.split(',\n')
     for (let i in rngs) { // rng is in the form "####-####"
         let rng = rngs[i];
@@ -382,7 +383,6 @@ function strHourToInt(str) {
                     });
 
                     function updateQuery() {
-                        console.log(restLayers)
                         restLayers.forEach(function (layer) {
                             layer.definitionExpression = buildCompleteSQLQuery(calcComb.selectedItems,
                                 chipGroup.selectedItems, timeFltr.checked, segmDays.value, slider.values, data);
