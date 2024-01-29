@@ -382,6 +382,7 @@ function strHourToInt(str) {
                     });
 
                     function updateQuery() {
+                        console.log(restLayers)
                         restLayers.forEach(function (layer) {
                             layer.definitionExpression = buildCompleteSQLQuery(calcComb.selectedItems,
                                 chipGroup.selectedItems, timeFltr.checked, segmDays.value, slider.values, data);
