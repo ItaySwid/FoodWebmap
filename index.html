@@ -173,7 +173,7 @@ function mergeQueriesWithAnd(q1, q2) {
 //
 // Logical functions for time range
 function rangesIntersect(stRange, st, ed) {
-    if rngs==null) return false;
+    if (stRange==null) return false;
     rngs = stRange.split(',\n')
     for (let i in rngs) { // rng is in the form "####-####"
         let rng = rngs[i];
