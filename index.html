@@ -156,7 +156,6 @@ function buildTimeSQLQueryByRange(day, st, ed, data) {
     // data is all features data. The SQL query will eventually be done with objectIDs.
     ret = []
     data.forEach(function (feature) {
-		console.log(feature.attributes.name)
         if (rangesIntersect(cleanHrString(feature.attributes[day]), st, ed))
             ret.push('OBJECTID=' + feature.attributes.OBJECTID);
     });
