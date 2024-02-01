@@ -101,7 +101,7 @@ function firstUpper(str) {
 }
 function cleanHrString(hr){
 	[...hr].forEach(function (c) {
-		if (!',-012345679'.includes(c)) hr=hr.replace(c,'');
+		if (!',-0123456789'.includes(c)) hr=hr.replace(c,'');
 	})
 	return hr;
 }
