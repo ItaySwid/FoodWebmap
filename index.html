@@ -99,6 +99,12 @@ function createVegaSVGElement() {
 function firstUpper(str) {
     return `${str.charAt(0).toUpperCase()}${str.slice(1)}`
 }
+function cleanHrString(hr){
+	[...hr].forEach(function (c) {
+		if (!',-012345679'.includes(c)) hr=hr.replace(c,'');
+	})
+	return hr;
+}
 //
 // Data handeling functions
 function dishDataToListOfUniqueValues(data) {
@@ -150,7 +156,8 @@ function buildTimeSQLQueryByRange(day, st, ed, data) {
     // data is all features data. The SQL query will eventually be done with objectIDs.
     ret = []
     data.forEach(function (feature) {
-        if (rangesIntersect(feature.attributes[day], st, ed))
+		console.log(feature.attributes.name)
+        if (rangesIntersect(cleanHrString(feature.attributes[day]), st, ed))
             ret.push('OBJECTID=' + feature.attributes.OBJECTID);
     });
     if (ret.length < 1) return 'OBJECTID=-1';
@@ -174,7 +181,7 @@ function mergeQueriesWithAnd(q1, q2) {
 // Logical functions for time range
 function rangesIntersect(stRange, st, ed) {
     if (stRange==null) return false;
-    rngs = stRange.split(',\n')
+    rngs = stRange.split(',')
     for (let i in rngs) { // rng is in the form "####-####"
         let rng = rngs[i];
         from = strHourToInt(rng.substring(0, 4));
